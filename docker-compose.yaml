@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  app:
+    container_name: django_tutorial_web
+    image: javierasping/django_tutorial:v1
+    restart: always
+    environment:
+      DB_HOST: mariadb-django
+      DB_USER: javiercruces
+      DB_PASS: javiercruces
+      DB_NAME: django
+      URL_BASE: 'http://djangodocker.javiercd.es/'
+      DJANGO_SUPERUSER_USERNAME: admin
+      DJANGO_SUPERUSER_EMAIL: admin@admin.com
+      DJANGO_SUPERUSER_PASSWORD: admin
+    ports:
+      - 8082:3000
+    depends_on:
+      - db
+  db:
+    container_name: mariadb-django
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: django
+      MYSQL_USER: javiercruces
+      MYSQL_PASSWORD: javiercruces
+      MYSQL_ROOT_PASSWORD: root_javiercruces
+    volumes:
+      - mariadb_django:/var/lib/mysql
+volumes:
+    mariadb_django:
+

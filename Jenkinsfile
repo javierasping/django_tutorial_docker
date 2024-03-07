@@ -3,7 +3,7 @@ pipeline {
         IMAGEN = "javierasping/django_tutorial_ic"
         LOGIN = 'USER_DOCKERHUB'
     }
-    agent none
+    agent any
     stages {
         stage("Bajar_imagen") {
             agent {

@@ -2,7 +2,7 @@ version: '3.1'
 services:
   app:
     container_name: django_tutorial_web
-    image: javierasping/django_tutorial_ic
+    image: javierasping/django_tutorial_ic:94
     restart: always
     environment:
       DB_HOST: mariadb-django

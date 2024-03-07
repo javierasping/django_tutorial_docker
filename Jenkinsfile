@@ -38,7 +38,7 @@ pipeline {
                 stage('Construir_imagen') {
                     steps {
                         script {
-                            newApp = docker.build "$IMAGEN:${env.BUILD_NUMBER}"
+                            newApp = docker.build "$IMAGEN:latest"
                         }
                     }
                 }
@@ -53,7 +53,7 @@ pipeline {
                 }
                 stage('Borrar_imagen') {
                     steps {
-                        sh "docker rmi $IMAGEN:${env.BUILD_NUMBER}"
+                        sh "docker rmi $IMAGEN:latest"
                     }
                 }
             }

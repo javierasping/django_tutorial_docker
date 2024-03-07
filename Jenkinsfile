@@ -59,6 +59,7 @@ pipeline {
             }
         }
         stage('SSH') {
+            agent any
             steps {
                 sshagent(credentials: ['CLAVE_SSH']) {
                     sh 'ssh -o StrictHostKeyChecking=no javiercruces@atlas.javiercd.es wget https://github.com/javierasping/django_tutorial_docker/blob/main/docker-compose.yaml -O docker-compose.yaml'

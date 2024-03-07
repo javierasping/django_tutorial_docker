@@ -63,6 +63,7 @@ pipeline {
             steps {
                 sshagent(credentials: ['NEW_KEY']) {
                     sh 'ssh -o StrictHostKeyChecking=no javiercruces@atlas.javiercd.es wget https://raw.githubusercontent.com/javierasping/django_tutorial_docker/main/docker-compose.yaml -O docker-compose.yaml'
+                    sh 'sed -i "s|image: javierasping/django_tutorial_ic|image: javierasping/django_tutorial_ic:${BUILD_NUMBER}|g" docker-compose.yaml'
                     sh 'ssh -o StrictHostKeyChecking=no javiercruces@atlas.javiercd.es docker-compose up -d --force-recreate'
                 }
             }

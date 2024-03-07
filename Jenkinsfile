@@ -7,8 +7,9 @@ pipeline {
     stages {
         stage("Bajar_imagen") {
             agent {
-                docker { image "python:3"
-                args '-u root:root'
+                docker {
+                    image "python:3"
+                    args '-u root:root'
                 }
             }
             stages {
@@ -56,7 +57,15 @@ pipeline {
                     }
                 }
             }
-        }           
+        }
+        stage('SSH') {
+            steps {
+                sshagent(credentials: ['SSH_JAVIERCRUCES']) {
+                    sh 'ssh -o StrictHostKeyChecking=no javiercruces@atlas.javiercd.es wget https://github.com/javierasping/django_tutorial_docker/blob/main/docker-compose.yaml -O docker-compose.yaml'
+                    sh 'ssh -o StrictHostKeyChecking=no javiercruces@atlas.javiercd.es docker-compose up -d --force-recreate'
+                }
+            }
+        }
     }
     post {
         always {
@@ -66,3 +75,4 @@ pipeline {
         }
     }
 }
+

@@ -30,4 +30,3 @@ services:
       - mariadb_django:/var/lib/mysql
 volumes:
     mariadb_django:
-

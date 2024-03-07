@@ -38,7 +38,7 @@ pipeline {
                 stage('Construir_imagen') {
                     steps {
                         script {
-                            newApp = docker.build "$IMAGEN:${env.BUILD_NUMBER} $IMAGEN:latest"
+                            newApp = docker.build "$IMAGEN:${env.BUILD_NUMBER}"
                         }
                     }
                 }

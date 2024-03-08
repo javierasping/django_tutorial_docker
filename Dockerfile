@@ -4,7 +4,7 @@ RUN echo 'Acquire::https::Verify-Peer "false";' > /etc/apt/apt.conf.d/99ignore-s
 RUN apt-get update && apt-get install -y python3-pip libmariadb-dev pkg-config && apt-get clean && rm -rf /var/lib/apt/lists/*
 WORKDIR /usr/share/app
 COPY django_tutorial .
-#COPY ./docker-entrypoint.sh /usr/local/
+COPY ./docker-entrypoint.sh /usr/local/
 
 RUN pip3 install --no-cache-dir --break-system-packages -r requirements.txt
 #RUN python3 manage.py migrate

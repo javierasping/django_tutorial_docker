@@ -13,6 +13,7 @@ services:
       DJANGO_SUPERUSER_USERNAME: admin
       DJANGO_SUPERUSER_EMAIL: admin@admin.com
       DJANGO_SUPERUSER_PASSWORD: admin
+      PRODUCCION: 'true'
     ports:
       - 8082:3000
     depends_on:

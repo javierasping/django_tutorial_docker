@@ -4,7 +4,8 @@ RUN echo 'Acquire::https::Verify-Peer "false";' > /etc/apt/apt.conf.d/99ignore-s
 RUN apt-get update && apt-get install -y python3-pip libmariadb-dev pkg-config && apt-get clean && rm -rf /var/lib/apt/lists/*
 WORKDIR /usr/share/app
 COPY django_tutorial .
-COPY ./docker-entrypoint.sh /usr/local/
+COPY ./docker-entrypoint.sh /usr/local/docker-entrypoint.sh
+
 
 RUN pip3 install --no-cache-dir --break-system-packages -r requirements.txt
 #RUN python3 manage.py migrate
@@ -23,5 +24,6 @@ EXPOSE 3000
 #ENV USERNAME admin
 #ENV EMAIL admin@gmail.com
 #CMD python3 manage.py migrate && python3 manage.py createsuperuser --noinput --username $USERNAME --email $EMAIL && python3 changesuperuserpw.py -n $USERNAME -p $PASSWORD && python3 manage.py runserver 0.0.0.0:3000
-RUN chmod + /usr/local/docker-entrypoint.sh
+
+RUN chmod +x /usr/local/docker-entrypoint.sh
 CMD /usr/local/docker-entrypoint.sh

@@ -1,7 +1,7 @@
 FROM debian
 RUN sed -i 's/http:/https:/g' /etc/apt/sources.list.d/debian.sources
 RUN echo 'Acquire::https::Verify-Peer "false";' > /etc/apt/apt.conf.d/99ignore-ssl-certificates
-RUN apt-get update && apt-get install -y python3-pip libmariadb-dev pkg-config && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y python3-pip mariadb-client libmariadb-dev pkg-config && apt-get clean && rm -rf /var/lib/apt/lists/*
 WORKDIR /usr/share/app
 COPY django_tutorial .
 COPY ./docker-entrypoint.sh /usr/local/docker-entrypoint.sh
@@ -27,3 +27,5 @@ EXPOSE 3000
 
 RUN chmod +x /usr/local/docker-entrypoint.sh
 CMD /usr/local/docker-entrypoint.sh
+
+#CMD python3 manage.py runserver 0.0.0.0:3000

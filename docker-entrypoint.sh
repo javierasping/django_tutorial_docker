@@ -13,6 +13,4 @@ if [ "$PRODUCCION" != "true" ]; then
     python3 manage.py migrate && python3 manage.py createsuperuser --noinput
 fi
 
-python3 manage.py runserver 0.0.0.0:3000
-
 

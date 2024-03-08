@@ -20,7 +20,7 @@ pipeline {
                 }
                 stage('Instalar_requeriments') {
                     steps {
-                        sh 'pip install -r django_tutorial/requirements.txt'
+                        sh 'pip install -r django_tutorial/requirements_test.txt'
                     }
                 }
                 stage('Test')

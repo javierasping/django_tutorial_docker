@@ -23,5 +23,5 @@ EXPOSE 3000
 #ENV USERNAME admin
 #ENV EMAIL admin@gmail.com
 #CMD python3 manage.py migrate && python3 manage.py createsuperuser --noinput --username $USERNAME --email $EMAIL && python3 changesuperuserpw.py -n $USERNAME -p $PASSWORD && python3 manage.py runserver 0.0.0.0:3000
-
+RUN chmod + /usr/local/docker-entrypoint.sh
 CMD /usr/local/docker-entrypoint.sh
